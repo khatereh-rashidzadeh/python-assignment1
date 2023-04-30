@@ -1,0 +1,12 @@
+name = input("نام دانشجو: ")
+last_name = input("نام خانوادگی دانشجو: ")
+grade = float(input("نمره دانشجو: "))
+
+average = grade
+
+if average >= 10:
+    status = "قبولی"
+else:
+    status = "مردودی"
+
+print(f"{name} {last_name} با معدل {average} از رشته ی تحصیلی ... {status} است.")
