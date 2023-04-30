@@ -1,12 +1,12 @@
-name = input("نام دانشجو: ")
-last_name = input("نام خانوادگی دانشجو: ")
-grade = float(input("نمره دانشجو: "))
+name = input("Student name: ")
+last_name = input("Student last name: ")
+grade = float(input("Student grade: "))
 
 average = grade
 
 if average >= 10:
-    status = "قبولی"
+    status = "Passed"
 else:
-    status = "مردودی"
+    status = "Failed"
 
-print(f"{name} {last_name} با معدل {average} از رشته ی تحصیلی ... {status} است.")
+print(f"{name} {last_name} with an average grade of {average} in the field of ... is {status}.")
