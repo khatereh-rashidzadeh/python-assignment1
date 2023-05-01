@@ -1,8 +1,9 @@
 name = input("enter Student name: ")
 last_name = input("enter Student last name: ")
-grade = float(input("enter Student grade: "))
-
-average = grade
+grade1 = float(input("enter Student grade 1: "))
+grade2 = float(input("enter Student grade 2: "))
+grade3 = float(input("enter Student grade 3: "))
+average = (grade1+grade2+grade3)/3
 
 if average >= 10:
     status = "Passed"
