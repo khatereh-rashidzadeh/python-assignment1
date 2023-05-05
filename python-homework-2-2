@@ -1,0 +1,12 @@
+import random
+
+while True:
+    a = random.randint(1, 6)
+    print(a)
+    if a == 6:
+        b = random.randint(1, 6)
+        print(b)
+        if b == 6:
+            c = random.randint(1, 6)
+            print(c)
+            break
