@@ -1,0 +1,71 @@
+import math
+
+def truncate(n):
+    return int(n * 1000) / 1000
+
+while True:
+    num1 = float(input("Enter your Number: "))
+
+    op = input("Enter Operation (Pick from +, -, *, /, radical, sin, cos, tan, cot, factorial, exit): ").lower()
+
+    if op == "radical":
+        re = math.sqrt(num1)
+    elif op == "sin":
+        re = math.sin(math.radians(num1))
+        re = truncate(re)
+    elif op == "cos":
+        re = math.cos(math.radians(num1))
+        re = truncate(re)
+    elif op == "tan":
+        re = math.tan(math.radians(num1))
+        re = truncate(re)
+    elif op == "cot":
+        re1 = math.tan(math.radians(num1))
+        re = 1 / re1
+        re = truncate(re)
+    elif op == "factorial":
+        num1_int = math.floor(num1)
+        re = math.factorial(num1_int)
+    elif op == "+":
+        num2 = input("Enter your Second Number: ")
+        if num2.isnumeric():
+            num2 = float(num2)
+            re = num1 + num2
+        else:
+            print("Invalid Input: Second Number must be numeric")
+            continue
+    elif op == "-":
+        num2 = input("Enter your Second Number: ")
+        if num2.isnumeric():
+            num2 = float(num2)
+            re = num1 - num2
+        else:
+            print("Invalid Input: Second Number must be numeric")
+            continue
+    elif op == "*":
+        num2 = input("Enter your Second Number: ")
+        if num2.isnumeric():
+            num2 = float(num2)
+            re = num1 * num2
+        else:
+            print("Invalid Input: Second Number must be numeric")
+            continue
+    elif op == "/":
+        num2 = input("Enter your Second Number: ")
+        if num2.isnumeric():
+            num2 = float(num2)
+            if num2 == 0:
+                re = "you cannot divide by 0"
+            else:
+                re = num1 / num2
+        else:
+            print("Invalid Input: Second Number must be numeric")
+            continue
+    elif op == "exit":
+        print("Exiting...")
+        break
+    else:
+        print("Invalid Input: Please enter a valid operation")
+        continue
+
+    print("Result: ", re)
