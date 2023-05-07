@@ -1,0 +1,16 @@
+import random
+
+number = random.randint(1, 20)
+guess = 0
+count = 0
+
+while guess != number:
+    guess = int(input("Guess a number (1-20): "))
+    count += 1
+    if guess < number:
+        print("Guess a larger number.")
+    elif guess > number:
+        print("Guess a smaller number.")
+
+print(f"Congratulations! You guessed the number {number}.")
+print(f"You made {count} guesses.")
