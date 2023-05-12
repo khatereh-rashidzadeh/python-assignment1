@@ -1,0 +1,20 @@
+import math
+
+def solve_quadratic_equation(a, b, c):
+    delta = (b**2) - (4*a*c)
+    if delta < 0:
+        print("The equation has no real solution.")
+    elif delta == 0:
+        a1 = -b / (2 * a)
+        print("The equation has one solution: ", a1)
+    else:
+        a1 = (-b - math.sqrt(delta)) / (2 * a)
+        a2 = (-b + math.sqrt(delta)) / (2 * a)
+        print("The equation has two solutions, the solutions are: ", a1, ",", a2)
+
+a, b, c = input("Enter the values of a, b, and c (for example: 3,4,1): ").split(",", 2)
+a, b, c = int(a), int(b), int(c)
+
+print("\n")
+
+solve_quadratic_equation(a, b, c)
