@@ -1,0 +1,20 @@
+def fibonacci_sequence(n):
+    if n <= 0:
+        print("Invalid input! n should be a positive integer.")
+        return
+    elif n == 1:
+        print(0)
+        return
+    elif n == 2:
+        print("0, 1")
+        return
+
+    array = [0, 1]
+    for i in range(2, n):
+        array.append(array[i-1] + array[i-2])
+
+    string = ", ".join(str(i) for i in array)
+    print(string)
+
+n = int(input("Enter a number: "))
+fibonacci_sequence(n)
