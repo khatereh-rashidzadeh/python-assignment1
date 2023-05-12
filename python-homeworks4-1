@@ -1,0 +1,15 @@
+def draw_board(n, m):
+    for row in range(n):
+        row_str = ""
+        for col in range(m):
+            if row % 2 == 0:
+                row_str += "#*"
+            else:
+                row_str += "*#"
+        print(row_str)
+
+user_input = input("Enter n and m (for example: 3,7): ")
+n, m = map(int, user_input.split(","))
+
+print("\n")
+draw_board(n, m)
