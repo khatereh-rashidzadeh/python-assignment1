@@ -1,0 +1,128 @@
+products = []
+
+def read_from_store_database():
+    file = open("/Users/Desktop/t.p6/store database")
+    for line in file:
+        product = line.strip().split(",")
+        product = {
+            "code": product[0],
+            "name": product[1],
+            "price": product[2],
+            "remaining": product[3]
+        }
+        products.append(product)
+    file.close()
+
+def write_to_store_database():
+    file = open("/Users/Desktop/t.p6/store database", "w")
+    for product in products:
+        line = ",".join([product["code"], product["name"], product["price"], product["remaining"]])
+        file.write(line + "\n")
+    file.close()
+
+def add():
+    code = input("Enter code: ")
+    name = input("Name: ")
+    price = input("Price: ")
+    remaining = input("Remaining: ")
+    product = {
+        "code": code,
+        "name": name,
+        "price": price,
+        "remaining": remaining
+    }
+    products.append(product)
+    print("Product added successfully.")
+    show_products()
+
+def edit():
+    code = input("Enter the code of the product you want to edit: ")
+    for i in range(len(products)):
+        if products[i]["code"] == code:
+            print("Which field do you want to edit?")
+            print("1. Name")
+            print("2. Price")
+            print("3. Count")
+            choice_2 = int(input("Enter your choice: "))
+            if choice_2 == 1:
+                new_name = input("Enter the new name for product with code number " + products[i]["code"] + ": ")
+                products[i]["name"] = new_name
+                print("Product name has been updated successfully.")
+                show_products()
+                break
+            elif choice_2 == 2:
+                new_price = input("Enter the new price for product with code number " + products[i]["code"] + ": ")
+                products[i]["price"] = new_price
+                print("Product price has been updated successfully.")
+                show_products()
+                break
+            elif choice_2 == 3:
+                new_count = input("Enter the new count for product with code number " + products[i]["code"] + ": ")
+                products[i]["remaining"] = new_count
+                print("Product count has been updated successfully.")
+                show_products()
+                break
+            else:
+                print("Invalid choice. Please enter a valid option.")
+                edit()
+                break
+    else:
+        print("Product not found.")
+
+def delete():
+    code = input("Enter the code of the product you want to delete: ")
+    for product in products:
+        if product["code"] == code:
+            products.remove(product)
+            print("Product deleted successfully.")
+            show_products()
+            break
+    else:
+        print("Product not found.")
+
+def purchase_from_store():
+    while True:
+        code = input("Enter the product code: ")
+        product_found = False
+        for product in products:
+            if product["code"] == code:
+                product_found = True
+                quantity = int(input("Enter the quantity you want to purchase: "))
+                if int(product["remaining"]) >= quantity:
+                    product["remaining"] = str(int(product["remaining"]) - quantity)
+                    print("Product added to your shopping cart.")
+                else:
+                    print("Insufficient stock. Unable to purchase the desired quantity.")
+                break
+
+        if not product_found:
+            print("Product not found.")
+
+        choice = input("Do you want to purchase another product? (yes/no): ")
+        if choice.lower() != "yes":
+            break
+
+    print("Purchase completed. Printing the invoice.")
+    show_invoice()
+
+def show_invoice():
+    total_price = 0
+    print("Invoice:")
+    for product in products:
+        price = float(product["price"]) * int(product["remaining"])
+        total_price += price
+        print("Product: " + product["name"])
+        print("Price per unit: " + product["price"])
+        print("Quantity: " + product["remaining"])
+        print("Total price: " + str(price))
+        print("--------------------")
+    print("Total invoice price: " + str(total_price))
+
+def save_data_on_exit():
+    write_to_store_database()
+    print("Data saved successfully.")
+
+# اجرای عملیات اصلی
+read_from_store_database()
+show_menu()
+save_data_on_exit()
